@@ -1,6 +1,8 @@
 import { PhoneItem } from "@/app/components/Phone-item"
 import { ServiceItem } from "@/app/components/Service-item"
+import { SidebarSheet } from "@/app/components/Sidebar-sheet"
 import { Button } from "@/app/components/ui/button"
+import { Sheet, SheetTrigger } from "@/app/components/ui/sheet"
 import { db } from "@/app/lib/prisma"
 import {
   ChevronLeft,
@@ -42,13 +44,18 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
           className="object-cover"
           fill
         />
-        <Button
-          variant="outline"
-          size="icon"
-          className="absolute right-4 top-4"
-        >
-          <MenuIcon />
-        </Button>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute right-4 top-4"
+            >
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
+          <SidebarSheet />
+        </Sheet>
         <Button
           variant="outline"
           size="icon"
