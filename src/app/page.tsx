@@ -5,9 +5,8 @@ import { Button } from "./components/ui/button"
 import Image from "next/image"
 import { db } from "./lib/prisma"
 import { BarbershopItem } from "./components/Barbershop-item"
-import { Footer } from "./components/Footer"
 import { BookingItem } from "./components/Booking-item"
-import { SearchFilter } from "./components/Search-filter"
+import { quickSearchOption } from "./_constants/search"
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
@@ -29,7 +28,22 @@ export default async function Home() {
             <SearchIcon />
           </Button>
         </div>
-        <SearchFilter />
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          {quickSearchOption.map((option) => (
+            <Button
+              className="flex gap-2 bg-[#1A1B1F] px-6 hover:bg-zinc-800"
+              variant="secondary"
+            >
+              <Image
+                src={option.imageUrl}
+                alt={option.title}
+                width={16}
+                height={16}
+              />
+              <span className="font-normal">{option.title}</span>
+            </Button>
+          ))}
+        </div>
         <div className="relative mt-6 h-[150px] w-full">
           <Image
             src="/banner-01.png"
@@ -56,7 +70,6 @@ export default async function Home() {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   )
 }
