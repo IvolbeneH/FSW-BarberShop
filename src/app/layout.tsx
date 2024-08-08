@@ -3,6 +3,7 @@ import { Nunito } from "next/font/google"
 import "./globals.css"
 import { Footer } from "./components/Footer"
 import { Toaster } from "./components/ui/sonner"
+import { AuthProvider } from "./_providers/auth"
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="dark">
       <body className={nunito.className}>
-        {children}
-        <Footer />
-        <Toaster richColors />
+        <AuthProvider>
+          {children}
+          <Footer />
+          <Toaster richColors />
+        </AuthProvider>
       </body>
     </html>
   )

@@ -7,6 +7,7 @@ import { db } from "./lib/prisma"
 import { BarbershopItem } from "./components/Barbershop-item"
 import { BookingItem } from "./components/Booking-item"
 import { quickSearchOption } from "./_constants/search"
+import { UserName } from "./components/User-name"
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
   const popularBarbershops = await db.barbershop.findMany({
@@ -20,8 +21,9 @@ export default async function Home() {
       <Header />
       <div>
         <div className="p-5 lg:h-[460px] lg:w-full lg:bg-[url('/fundopc.png')] lg:bg-cover lg:bg-center lg:p-0">
-          <h2 className="text-xl font-bold">Olá, Ivolbene!</h2>
-          <p>Terça feira, 06 de agosto.</p>
+          <div>
+            <UserName />
+          </div>
           <div className="mt-6 flex items-center gap-2">
             <Input placeholder="Search" />
             <Button>
